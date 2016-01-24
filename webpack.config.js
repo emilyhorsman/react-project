@@ -1,4 +1,5 @@
-var merge = require('webpack-merge');
+var webpack = require('webpack');
+var merge   = require('webpack-merge');
 
 var TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
@@ -29,7 +30,13 @@ var common = {
         include: __dirname + '/app'
       }
     ]
-  }
+  },
+
+  plugins: [
+    new webpack.ProvidePlugin({
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+    })
+  ]
 };
 
 if (TARGET === 'build') {

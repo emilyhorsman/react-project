@@ -11,16 +11,23 @@ export default class UserGists extends Component {
   }
 
   componentDidMount() {
-    $.get(this.props.source, (result) => {
-      const lastGist = result[0];
-      this.setState({
-        username: lastGist.owner.login,
-        lastGistUrl: lastGist.html_url
-      });
-    });
+    fetch(this.props.source)
+      .then(response => response.json())
+      .then(data => data[0])
+      .then(lastGist => {
+          this.setState({
+            username: lastGist.owner.login,
+            lastGistUrl: lastGist.html_url
+          });
+        })
+      ;
   }
 
   render() {
+    if (this.state.error) {
+      return <div>{this.state.error}</div>;
+    }
+
     return (
       <div>
       {this.state.username}'s last gist is <a href={this.state.lastGistUrl}>here</a>.
