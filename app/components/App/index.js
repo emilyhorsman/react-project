@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
+import UserGists from '../UserGists';
+
 import './style.scss';
 
 export default class App extends Component {
   render() {
-    return <h1>Hello {this.props.foo}</h1>;
+    return <UserGists source="https://api.github.com/users/emilyhorsman/gists" />;
   }
 }
