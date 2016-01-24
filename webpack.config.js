@@ -12,7 +12,7 @@ var common = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json']
+    extensions: ['', '.js', '.jsx', '.json', '.scss']
   },
 
   module: {
@@ -20,6 +20,12 @@ var common = {
       {
         test: /\.jsx?$/,
         loaders: ['react-hot', 'babel?presets[]=react,presets[]=es2015'],
+        include: __dirname + '/app'
+      },
+
+      {
+        test: /\.scss$/,
+        loader: 'style!css!sass',
         include: __dirname + '/app'
       }
     ]
