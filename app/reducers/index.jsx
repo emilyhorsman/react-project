@@ -1,3 +1,8 @@
-export default function(state, action) {
-  return state;
-}
+import { combineReducers } from 'redux'
+import timers from './timers'
+
+const rootReducer = combineReducers({
+  timers
+})
+
+export default rootReducer
