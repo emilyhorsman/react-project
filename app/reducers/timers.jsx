@@ -1,11 +1,7 @@
-const initialState = [
-  { time: 60, id: 1 },
-  { time: 10, id: 2 },
-  { time: 30, id: 3 }
-]
-
-const timers = (state = initialState, action) => {
+const timers = (state = [], action) => {
   switch (action.type) {
+    case 'FETCHING_TIMERS_SUCCESS':
+      return action.timers
     case 'TICK':
       return state.map(timer => (
         {
