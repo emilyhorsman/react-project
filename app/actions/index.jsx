@@ -8,7 +8,8 @@ function receiveTimers(json) {
     timers: json.data.map(timer => ({
       initialTime: timer.attributes.countdown_from,
       time: timer.attributes.countdown_from,
-      id: lastTimerId++
+      id: lastTimerId++,
+      completed: false
     })),
     receivedAt: Date.now()
   }

@@ -30,6 +30,7 @@ class TimerContainer extends Component {
           <Timer
             key={timer.id}
             time={timer.time}
+            completed={timer.time == 0}
             resetTimer={() => dispatch(resetTimer(timer.id))}
           />
         )}

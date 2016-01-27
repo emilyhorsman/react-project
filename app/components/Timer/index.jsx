@@ -1,11 +1,18 @@
 import React, { Component, PropTypes } from 'react'
 
+import './styles.scss'
+
 class Timer extends Component {
   render() {
-    const { resetTimer, time, completed } = this.props
+    const { time, completed, resetTimer } = this.props
+
+    let classes = ['timer']
+    if (completed) {
+      classes.push('is-completed')
+    }
 
     return (
-      <div>
+      <div className={classes.join(' ')}>
         <button onClick={resetTimer}>Reset Timer</button>{' '}
         Seconds remaining: {time}
       </div>
@@ -15,6 +22,7 @@ class Timer extends Component {
 
 Timer.propTypes = {
   time: PropTypes.number.isRequired,
+  completed: PropTypes.bool,
   resetTimer: PropTypes.func.isRequired
 }
 
