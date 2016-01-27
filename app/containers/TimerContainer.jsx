@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Timer from '../components/Timer'
 import Loader from '../components/Loader'
-import { fetchTimers, tick } from '../actions'
+import { fetchTimers, tick, resetTimer } from '../actions'
 
 class TimerContainer extends Component {
   componentDidMount() {
@@ -20,13 +21,17 @@ class TimerContainer extends Component {
   }
 
   render() {
-    const { timers, loading } = this.props
+    const { timers, loading, dispatch } = this.props
 
     return (
       <div>
         <Loader active={loading} />
         {timers.map(timer =>
-          <Timer key={timer.id} time={timer.time} />
+          <Timer
+            key={timer.id}
+            time={timer.time}
+            resetTimer={() => dispatch(resetTimer(timer.id))}
+          />
         )}
       </div>
     )

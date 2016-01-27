@@ -1,4 +1,4 @@
-const api_url = 'https://rawgit.com/emilyhorsman/fc167009bb30f63f56ee/raw/afd8a1ed2d12ddffcf3728fcc18b2cef8aac211c/timers.json'
+const api_url = 'https://rawgit.com/emilyhorsman/fc167009bb30f63f56ee/raw/68c50908c622bc9986f35b8f24139cd28a6763a2/timers.json'
 
 let lastTimerId = 0
 
@@ -6,7 +6,8 @@ function receiveTimers(json) {
   return {
     type: 'FETCHING_TIMERS_SUCCESS',
     timers: json.data.map(timer => ({
-      time: timer.attributes.time,
+      initialTime: timer.attributes.countdown_from,
+      time: timer.attributes.countdown_from,
       id: lastTimerId++
     })),
     receivedAt: Date.now()
@@ -28,5 +29,12 @@ export function fetchTimers(dispatch) {
 export function tick() {
   return {
     type: 'TICK'
+  }
+}
+
+export function resetTimer(id) {
+  return {
+    type: 'RESET_TIMER',
+    id: id
   }
 }
